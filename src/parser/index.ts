@@ -3,7 +3,7 @@ import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
 import { toString } from 'mdast-util-to-string';
-import type { Root, Heading, List, ListItem, Paragraph, Strong, Text, YAML } from 'mdast';
+import type { Root, Heading, List, ListItem, Paragraph, YAML } from 'mdast';
 import type { BacklogDocument, BacklogItem, BacklogStatus, Priority, ItemType } from '../domain/index.js';
 import { BACKLOG_STATUSES, PRIORITIES, ITEM_TYPES } from '../domain/index.js';
 

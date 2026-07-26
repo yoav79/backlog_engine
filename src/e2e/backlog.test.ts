@@ -466,7 +466,6 @@ describe('Backlog Engine — E2E full lifecycle', () => {
     });
 
     it('passes for single-entry changelog', async () => {
-      const { writeFile } = await import('node:fs/promises');
       const badChangelog = `---
 schemaVersion: 1
 changelogId: chg-test
