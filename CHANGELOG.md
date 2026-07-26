@@ -1,11 +1,22 @@
 ---
 schemaVersion: 1
 changelogId: chg-ms1by4k4
-lastChangeId: CHG-000007
-updatedAt: 2026-07-26T17:48:45.954Z
+lastChangeId: CHG-000008
+updatedAt: 2026-07-26T18:46:38.327Z
 ---
 
 # Changelog
+
+## CHG-000008
+
+- Timestamp: 2026-07-26T18:46:38.327Z
+- Actor: human:yoab
+- Operation: status_transition
+- Items: BLG-003
+- CommandId: close-ms25g4iu
+- Reason: Cierre de item
+- Changes: 2 campo(s) modificado(s)
+
 
 ## CHG-000007
 

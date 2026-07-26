@@ -6,20 +6,6 @@ updatedAt: 2026-07-26T05:00:49.679Z
 
 # Backlog
 
-## BLG-003: Hacer el changelog mas descriptivo y entendible
-
-- Status: todo
-- Priority: high
-- Type: improvement
-- Scope: format
-- Owner: unassigned
-- Created: 2026-07-26T05:04:15.311Z
-- Updated: 2026-07-26T05:04:15.311Z
-
-### Description
-
-El changelog actual muestra cambios pero no se entiende bien que paso en cada evento. Mejorar las entradas para que describan claramente: que cambio, de que a que, quien lo hizo y porque. Usar lenguaje natural en lugar de solo nombres de campos.
-
 ## BLG-001: Renombrar backlog.md a BACKLOG.md
 
 - Status: done
@@ -75,3 +61,26 @@ Mejorar el formato del backlog.md y CHANGELOG.md para que sea mas legible por hu
 - src/services/changelog.ts: entries sin bold
 - BACKLOG.md y CHANGELOG.md regenerados con formato limpio
 - Tests: 89/89 pasan, round-trip verificado
+
+## BLG-003: Hacer el changelog mas descriptivo y entendible
+
+- Status: done
+- Priority: high
+- Type: improvement
+- Scope: format
+- Owner: unassigned
+- Created: 2026-07-26T05:04:15.311Z
+- Updated: 2026-07-26T18:46:38.310Z
+
+### Description
+
+El changelog actual muestra cambios pero no se entiende bien que paso en cada evento. Mejorar las entradas para que describan claramente: que cambio, de que a que, quien lo hizo y porque. Usar lenguaje natural en lugar de solo nombres de campos.
+
+### Acceptance Criteria
+
+- [x] Entradas de changelog en lenguaje natural describiendo qué cambió, de qué a qué, quién lo hizo y por qué
+- [x] El formato es legible por humanos sin perder parseabilidad
+
+### Evidence
+
+- Entradas de changelog ahora describen en lenguaje natural qué cambió, de qué a qué, quién lo hizo y por qué
