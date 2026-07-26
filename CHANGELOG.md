@@ -6,6 +6,7 @@ updatedAt: 2026-07-26T17:48:45.954Z
 ---
 
 # Changelog
+
 ## CHG-000007
 
 - Timestamp: 2026-07-26T17:48:45.954Z
@@ -16,7 +17,6 @@ updatedAt: 2026-07-26T17:48:45.954Z
 - Reason: Cierre de item
 - Changes: 2 campo(s) modificado(s)
 
-# Changelog
 ## CHG-000006
 
 - Timestamp: 2026-07-26T17:44:45.582Z
@@ -27,7 +27,6 @@ updatedAt: 2026-07-26T17:48:45.954Z
 - Reason: Cierre de item
 - Changes: 2 campo(s) modificado(s)
 
-# Changelog
 ## CHG-000005
 
 - Timestamp: 2026-07-26T17:44:33.513Z
@@ -37,7 +36,6 @@ updatedAt: 2026-07-26T17:48:45.954Z
 - CommandId: update-ms238ag9
 - Changes: 1 campo(s) modificado(s)
 
-# Changelog
 ## CHG-000004
 
 - Timestamp: 2026-07-26T05:04:15.317Z
@@ -47,7 +45,6 @@ updatedAt: 2026-07-26T17:48:45.954Z
 - CommandId: add-ms1c2j85
 - Changes: 14 campo(s) modificado(s)
 
-# Changelog
 ## CHG-000003
 
 - Timestamp: 2026-07-26T05:00:59.937Z
@@ -57,7 +54,6 @@ updatedAt: 2026-07-26T17:48:45.954Z
 - CommandId: add-ms1bycgx
 - Changes: 14 campo(s) modificado(s)
 
-# Changelog
 ## CHG-000002
 
 - Timestamp: 2026-07-26T05:00:54.188Z
@@ -67,7 +63,6 @@ updatedAt: 2026-07-26T17:48:45.954Z
 - CommandId: add-ms1by818
 - Changes: 14 campo(s) modificado(s)
 
-# Changelog
 ## CHG-000001
 
 - Timestamp: 2026-07-26T05:00:49.684Z
@@ -76,5 +71,3 @@ updatedAt: 2026-07-26T17:48:45.954Z
 - Items: 
 - CommandId: init-ms1by4k4
 - Reason: Inicialización del backlog
-
-# Changelog

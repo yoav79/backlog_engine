@@ -140,10 +140,11 @@ export function recordChange(changelog: string, request: RecordChangeRequest): C
     if (headerMatch) {
       existingEntries = existingEntries.slice(headerMatch[0].length);
     }
+    existingEntries = existingEntries.replace(/\n# Changelog\n/g, '\n');
 
     const entryMd = `\n## ${changeId}\n\n- Timestamp: ${entry.timestamp}\n- Actor: ${entry.actor}\n- Operation: ${entry.operation}\n- Items: ${entry.itemIds.join(', ')}\n- CommandId: ${entry.commandId}\n${entry.reason ? `- Reason: ${entry.reason}\n` : ''}${fieldChanges.length > 0 ? `- Changes: ${fieldChanges.length} campo(s) modificado(s)\n` : ''}`;
 
-    const newChangelog = `${updatedFrontmatter}\n# Changelog${entryMd}${existingEntries}`;
+    const newChangelog = `${updatedFrontmatter}\n# Changelog\n${entryMd}${existingEntries}`;
 
     return { entry, changelogMarkdown: newChangelog };
   }
