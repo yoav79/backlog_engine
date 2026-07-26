@@ -33,3 +33,17 @@ Renombrar el archivo backlog.md a BACKLOG.md para que siga el estandar de nomenc
 ### Description
 
 El formato actual del backlog.md y CHANGELOG.md es muy maquinito (metadata lists con bold, timestamps ISO). Mejorar el formato para que sea mas legible por humanos: usar tablas, fechas relativas, secciones mas claras, etc. Sin romper el parseo.
+
+## BLG-003: Hacer el changelog mas descriptivo y entendible
+
+- **Status:** todo
+- **Priority:** high
+- **Type:** improvement
+- **Scope:** format
+- **Owner:** unassigned
+- **Created:** 2026-07-26T05:04:15.311Z
+- **Updated:** 2026-07-26T05:04:15.311Z
+
+### Description
+
+El changelog actual muestra cambios pero no se entiende bien que paso en cada evento. Mejorar las entradas para que describan claramente: que cambio, de que a que, quien lo hizo y porque. Usar lenguaje natural en lugar de solo nombres de campos.

@@ -1,9 +1,19 @@
 ---
 schemaVersion: 1
 changelogId: chg-ms1by4k4
-lastChangeId: CHG-000003
-updatedAt: 2026-07-26T05:00:59.937Z
+lastChangeId: CHG-000004
+updatedAt: 2026-07-26T05:04:15.317Z
 ---
+
+# Changelog
+## CHG-000004
+
+- **Timestamp:** 2026-07-26T05:04:15.317Z
+- **Actor:** system
+- **Operation:** create
+- **Items:** BLG-003
+- **CommandId:** add-ms1c2j85
+- **Changes:** 14 campo(s) modificado(s)
 
 # Changelog
 ## CHG-000003
