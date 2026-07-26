@@ -1,0 +1,261 @@
+{
+  "schemaVersion": 2,
+  "project": {
+    "name": "Backlog Engine",
+    "workingTitle": "Backlog Engine",
+    "description": "Utilería determinista de backlog en Markdown para agentes de IA",
+    "status": "completed",
+    "currentPhase": 14,
+    "createdAt": "2026-07-25T19:43:56.149Z",
+    "updatedAt": "2026-07-25T21:29:40.000Z"
+  },
+  "phases": {
+    "1_discovery": "approved",
+    "2_product_requirements": "approved",
+    "3_application_flow": "approved",
+    "4_uiux_brief": "approved",
+    "5_module_catalog": "approved",
+    "6_functional_requirements": "approved",
+    "7_backend_schema": "approved",
+    "8_solution_architecture": "approved",
+    "9_technology_stack": "approved",
+    "10_security_and_nfr": "approved",
+    "11_technical_requirements": "approved",
+    "12_delivery_roadmap": "approved",
+    "13_software_blueprint": "approved",
+    "14_consistency_review": "approved"
+  },
+  "confirmed": {
+    "problem": "Los agentes de IA no tienen una forma determinista de gestionar backlogs: formatos inconsistentes, ediciones que dañan secciones, sin IDs únicos, sin validación de dependencias ni transiciones de estado",
+    "currentOperation": "Edición textual libre; los agentes crean encabezados, campos y estados diferentes para el mismo concepto",
+    "targetUsers": ["Agentes consumidores de IA", "Humanos operadores", "Orquestadores", "Reviewers externos"],
+    "buyer": "CTO",
+    "beneficiaries": ["CTO", "Equipo de desarrollo", "Agentes consumidores de IA"],
+    "objectives": [
+      "Definir un contrato Markdown versionado y único",
+      "Impedir escrituras que produzcan una estructura inválida",
+      "Permitir altas y actualizaciones parciales sin edición libre del documento",
+      "Seleccionar registros por IDs estables y excluir automáticamente los ya terminados o cancelados",
+      "Generar prompts con alcance positivo y prohibiciones explícitas",
+      "Guardar cambios de forma atómica y mantener evidencia suficiente para diagnóstico",
+      "Ofrecer una lógica central reutilizable desde CLI y desde código"
+    ],
+    "successCriteria": [
+      "Existe un contrato Markdown v1 documentado y probado",
+      "El parser y renderer superan round-trip determinista",
+      "validate detecta todas las reglas críticas definidas",
+      "add y update no permiten alterar IDs ni producir documentos inválidos",
+      "select nunca autoriza tareas done, cancelled o no solicitadas",
+      "prompt incluye solo IDs seleccionados y produce manifiesto verificable",
+      "Las escrituras son atómicas y detectan conflictos de hash",
+      "La API y la CLI comparten la misma lógica de dominio",
+      "La suite incluye los escenarios AT-01 a AT-10",
+      "El README incluye instalación, ejemplos, esquema y códigos de error"
+    ],
+    "constraints": [
+      "Sin base de datos",
+      "Portable (Linux/macOS); Windows deseable si la tecnología lo permite",
+      "Determinista: misma entrada produce misma salida",
+      "Sin dependencia de LLM en el MVP",
+      "Escritura atómica con rollback ante error",
+      "Markdown canónico: el documento se regenera siempre con el mismo orden y formato",
+      "Fail closed: ante documento inválido no se escribe ningún cambio",
+      "Entrega ASAP sin fecha límite fija",
+      "Licencia MIT",
+      "Repositorio oficial: backlog_engine (este repositorio)",
+      "Tecnología: TypeScript/Node.js"
+    ],
+    "scope": [
+      "Un archivo backlog.md como fuente persistente de verdad",
+      "Parser Markdown hacia un modelo interno tipado",
+      "Validador estructural, semántico y de transiciones",
+      "Renderer canónico de Markdown",
+      "Operaciones: validate, list/get, add, update, select, prompt y close",
+      "IDs automáticos y estables",
+      "Escritura atómica con rollback ante error",
+      "Salida humana y salida JSON para integración",
+      "Pruebas unitarias, de round-trip e integración CLI"
+    ],
+    "outOfScope": [
+      "Interfaz web o móvil",
+      "Base de datos, sincronización distribuida o edición colaborativa en tiempo real",
+      "Ejecución del agente que recibe el prompt",
+      "Revisión automática del código producido",
+      "Planificación inteligente, estimación o priorización mediante LLM",
+      "Autenticación multiusuario y permisos remotos",
+      "Soporte simultáneo para múltiples formatos de documento"
+    ]
+  },
+  "productRequirements": {
+    "vision": "Backlog Engine será una utilería determinista, pequeña y sin base de datos, que permita a agentes de IA consultar y modificar un backlog almacenado en un único archivo Markdown, actuando como capa de integridad y acceso sin ser un agente autónomo ni un orquestador.",
+    "valueProposition": "Convertir un archivo Markdown en un registro controlado, auditable y compatible con agentes, eliminando la corrupción estructural, los cambios fuera de alcance y los estados inconsistentes que produce la edición textual libre.",
+    "objectives": [
+      "Proporcionar una interfaz determinista para crear, consultar, actualizar, validar y seleccionar elementos de backlog, preservando permanentemente un formato Markdown canónico y generando asignaciones de trabajo estrictamente acotadas.",
+      "Definir un contrato Markdown versionado y único.",
+      "Impedir escrituras que produzcan una estructura inválida.",
+      "Permitir altas y actualizaciones parciales sin edición libre del documento.",
+      "Seleccionar registros por IDs estables y excluir automáticamente los ya terminados o cancelados.",
+      "Generar prompts con alcance positivo y prohibiciones explícitas.",
+      "Guardar cambios de forma atómica y mantener evidencia suficiente para diagnóstico.",
+      "Ofrecer una lógica central reutilizable desde CLI y desde código."
+    ],
+    "mvpScope": [
+      "Un archivo backlog.md como fuente persistente de verdad.",
+      "Parser Markdown hacia un modelo interno tipado.",
+      "Validador estructural, semántico y de transiciones.",
+      "Renderer canónico de Markdown.",
+      "Operaciones: validate, list/get, add, update, select, prompt y close.",
+      "IDs automáticos y estables (formato BLG-XXX).",
+      "Escritura atómica con rollback ante error.",
+      "Salida humana y salida JSON para integración.",
+      "Pruebas unitarias, de round-trip e integración CLI."
+    ],
+    "postMvpScope": [],
+    "outOfScope": [
+      "Interfaz web o móvil.",
+      "Base de datos, sincronización distribuida o edición colaborativa en tiempo real.",
+      "Ejecución del agente que recibe el prompt.",
+      "Revisión automática del código producido.",
+      "Planificación inteligente, estimación o priorización mediante LLM.",
+      "Autenticación multiusuario y permisos remotos.",
+      "Soporte simultáneo para múltiples formatos de documento."
+    ]
+  },
+  "applicationFlow": {
+    "actors": [
+      { "name": "Agente consumidor", "role": "Solicitante", "description": "Agente de IA que necesita consultar o modificar el backlog" },
+      { "name": "Humano operador", "role": "Operador", "description": "Persona que supervisa y opera la herramienta" },
+      { "name": "Orquestador", "role": "Coordinador", "description": "Sistema o script que orquesta el flujo de trabajo" },
+      { "name": "Backlog Engine", "role": "Ejecutor", "description": "La utilería misma: valida, selecciona, muta, renderiza y persiste" },
+      { "name": "Reviewer externo", "role": "Validador", "description": "Entidad que verifica resultados y produce evidencia" }
+    ],
+    "processes": [
+      { "name": "CU-01 Validar backlog", "description": "Validar estructura y semántica del backlog", "actors": ["Humano operador", "Backlog Engine"] },
+      { "name": "CU-02 Agregar registro", "description": "Agregar un nuevo elemento con ID autogenerado", "actors": ["Humano operador", "Backlog Engine"] },
+      { "name": "CU-03 Actualizar registro", "description": "Actualizar campos específicos de un registro existente", "actors": ["Agente consumidor", "Backlog Engine"] },
+      { "name": "CU-04 Consultar registros", "description": "Recuperar uno o varios registros sin modificarlos", "actors": ["Agente consumidor", "Humano operador", "Backlog Engine"] },
+      { "name": "CU-05 Seleccionar pendientes", "description": "Filtrar IDs solicitados excluyendo done/cancelled", "actors": ["Orquestador", "Backlog Engine"] },
+      { "name": "CU-06 Generar prompt", "description": "Crear prompt de trabajo acotado con manifiesto JSON", "actors": ["Orquestador", "Backlog Engine"] },
+      { "name": "CU-07 Cerrar registro", "description": "Cerrar un registro con evidencia y criterios completos", "actors": ["Reviewer externo", "Backlog Engine"] },
+      { "name": "CU-08 Inicializar backlog", "description": "Crear un backlog.md vacío y válido con frontmatter canónico", "actors": ["Humano operador", "Backlog Engine"] }
+    ],
+    "exceptions": ["Gestionado mediante códigos de error (INVALID_FRONTMATTER, DUPLICATE_ITEM_ID, DEPENDENCY_CYCLE, SOURCE_CONFLICT, etc.)"],
+    "controlPoints": []
+  },
+  "uiuxBrief": {
+    "designSystem": "CLI design system: convención backlog <verbo>, verbos con guiones, flags --, colores ANSI (verde éxito, rojo error, amarillo warning, cian IDs)",
+    "brandColors": [],
+    "typography": null,
+    "targetDevices": ["Terminal Linux/macOS (MVP), Windows deseable (post-MVP), CI/CD, OpenCode/DevFlow via API interna"],
+    "accessibility": null,
+    "keyScreens": []
+  },
+  "modules": [],
+  "functionalRequirements": [],
+  "backendSchema": {
+    "entities": [
+      {
+        "name": "BacklogDocument",
+        "description": "Archivo principal backlog.md: fuente de verdad del backlog",
+        "attributes": ["schemaVersion (number)", "backlogId (string)", "updatedAt (string ISO 8601)", "items (BacklogItem[])"],
+        "relations": ["contiene 0..N BacklogItem"]
+      },
+      {
+        "name": "BacklogItem",
+        "description": "Registro individual dentro del backlog",
+        "attributes": ["id (string: BLG-XXX)", "title (string)", "status (BacklogStatus)", "priority (critical|high|medium|low)", "type (feature|bug|improvement|documentation)", "owner (string)", "dependsOn (string[])", "scope (string)", "createdAt (string ISO 8601)", "updatedAt (string ISO 8601)", "description (string)", "acceptanceCriteria (object[])", "evidence (string[])", "notes (string[])"],
+        "relations": ["depende de 0..N BacklogItem via dependsOn", "referenciado por 0..N BacklogChange via itemIds"]
+      },
+      {
+        "name": "BacklogChange",
+        "description": "Entrada de cambio en CHANGELOG.md",
+        "attributes": ["changeId (string: CHG-XXXXXX)", "timestamp (string ISO 8601)", "actor (string)", "operation (ChangeOperation)", "itemIds (string[])", "reason (string opcional)", "changes (FieldChange[])", "commandId (string)"],
+        "relations": ["referencia 1..N BacklogItem via itemIds", "pertenece a 1 ChangelogDocument"]
+      },
+      {
+        "name": "ChangelogDocument",
+        "description": "Archivo CHANGELOG.md: historial de cambios",
+        "attributes": ["schemaVersion (number)", "changelogId (string)", "lastChangeId (string)", "updatedAt (string ISO 8601)", "entries (BacklogChange[])"],
+        "relations": ["contiene 1..N BacklogChange en orden descendente"]
+      }
+    ],
+    "sensitiveData": ["No se esperan datos personales (PII) en el backlog técnico", "No se almacenan credenciales ni secretos"],
+    "integrations": [],
+    "volumeEstimates": "10-5,000 items por backlog; ~500 KB backlog.md; ~10-50 MB CHANGELOG.md tras 10,000+ cambios"
+  },
+  "architecture": {
+    "status": "pending",
+    "style": null,
+    "description": null,
+    "layers": [],
+    "principles": []
+  },
+  "technologyStack": {
+    "status": "pending",
+    "approvedStack": {}
+  },
+  "technicalRequirements": {
+    "performance": null,
+    "scalability": null,
+    "availability": null,
+    "compliance": null,
+    "security": null,
+    "monitoring": null
+  },
+  "approvedDecisions": [],
+  "assumptions": [],
+  "risks": [],
+  "openQuestions": [],
+  "pendingApprovals": [],
+  "documents": {
+    "01_discovery": { "status": "approved", "approvedAt": "2026-07-25T19:50:58.866Z" },
+    "02_product_requirements": { "status": "approved", "approvedAt": "2026-07-25T19:55:29.571Z" },
+    "03_application_flow": { "status": "approved", "approvedAt": "2026-07-25T20:00:12.802Z" },
+    "04_uiux_brief": { "status": "approved", "approvedAt": "2026-07-25T20:10:41.745Z" },
+    "05_module_catalog": { "status": "approved", "approvedAt": "2026-07-25T20:14:07.366Z" },
+    "06_functional_requirements": { "status": "approved", "approvedAt": "2026-07-25T20:21:36.245Z" },
+    "07_backend_schema": { "status": "approved", "approvedAt": "2026-07-25T20:23:56.757Z" },
+    "08_solution_architecture": { "status": "approved", "approvedAt": "2026-07-25T20:28:50.263Z" },
+    "09_technology_stack": { "status": "approved", "approvedAt": "2026-07-25T20:31:34.928Z" },
+    "10_security_and_nfr": { "status": "approved", "approvedAt": "2026-07-25T20:33:20.013Z" },
+    "11_technical_requirements": { "status": "approved", "approvedAt": "2026-07-25T20:59:08.000Z" },
+    "12_delivery_roadmap": { "status": "approved", "approvedAt": "2026-07-25T21:05:50.000Z" },
+    "13_software_blueprint": { "status": "approved", "approvedAt": "2026-07-25T21:10:00.000Z" },
+    "14_consistency_review": { "status": "approved", "approvedAt": "2026-07-25T21:29:40.000Z" }
+  },
+  "changeLog": [
+    { "date": "2026-07-25T21:29:40.000Z", "action": "Fase 14 Consistency Review aprobada (gate final)", "details": "Blueprint completado. 14 fases aprobadas, 0 contradicciones, trazabilidad completa. SOFTWARE-BLUEPRINT.md consolidado desde 12 documentos fuente con 12 ADRs." },
+    { "date": "2026-07-25T21:10:00.000Z", "action": "Fase 13 Software Blueprint aprobada", "details": "Documento SOFTWARE-BLUEPRINT.md sintetizado desde docs 01-12 y promovido a docs/. Contiene 12 secciones de resumen, 12 ADRs y enlaces a cada fuente. Avanzando a Fase 14 Consistency Review (revisión final)." },
+    { "date": "2026-07-25T21:05:50.000Z", "action": "Fase 12 Delivery Roadmap aprobada (gate explícito)", "details": "Documento 12-delivery-roadmap.md promovido a docs/. MVP de entrega única, 7 fases de construcción (~4 semanas), 9 criterios go/no-go. Avanzando a Fase 13 Software Blueprint (síntesis blueprint-compiler)." },
+    { "date": "2026-07-25T20:59:08.000Z", "action": "Fase 11 Technical Requirements regenerada con blueprint-compiler", "details": "Draft generado desde documentos 07-10 (backend schema, solution architecture, technology stack, security & NFR). Promovido a docs/. Avanzando a Fase 12 Delivery Roadmap." },
+    { "date": "2026-07-25T20:58:00.000Z", "action": "Retroceso temporal a Fase 11 para regenerar con blueprint-compiler", "details": "El blueprint-compiler no estaba operativo cuando se generó la Fase 11 original. Se revierte temporalmente la fase 11 a needs_revision (restaurada a approved tras la regeneración). Se archiva el documento anterior y se invoca al blueprint-compiler en modo technical-requirements." },
+    { "date": "2026-07-25T20:46:55.737Z", "action": "Fase 11 Technical Requirements aprobada", "details": "Documento 11-technical-requirements.md promovido a docs/. Avanzando a Fase 12 Delivery Roadmap (gate explícito)." },
+    { "date": "2026-07-25T20:34:41.091Z", "action": "Sesión pausada por el usuario", "details": "Blueprint en fase 11 (Technical Requirements). Draft creado en drafts/. Pendiente de verificación y promoción por Principal." },
+    { "date": "2026-07-25T20:33:20.013Z", "action": "Fase 10 Security & NFR aprobada", "details": "Documento 10-security-and-nfr.md promovido a docs/. Avanzando a Fase 11 Technical Requirements (síntesis blueprint-compiler)." },
+    { "date": "2026-07-25T20:32:29.606Z", "action": "Fase 10 Security & NFR: borrador listo", "details": "Borrador 10-security-and-nfr.md creado con rendimiento, disponibilidad, seguridad, privacidad, respaldo y mantenibilidad. Pendiente de aprobación." },
+    { "date": "2026-07-25T20:31:34.928Z", "action": "Fase 9 Technology Stack aprobada", "details": "Documento 09-technology-stack.md promovido a docs/. Avanzando a Fase 10 Security & NFR." },
+    { "date": "2026-07-25T20:30:48.022Z", "action": "Fase 9 Technology Stack: borrador listo", "details": "Borrador 09-technology-stack.md creado con stack definido: Node.js/TypeScript, unified/remark, commander, Vitest. Pendiente de aprobación." },
+    { "date": "2026-07-25T20:28:50.263Z", "action": "Fase 8 Solution Architecture aprobada (gate)", "details": "Documento 08-solution-architecture.md aprobado. Avanzando a Fase 9 Technology Stack." },
+    { "date": "2026-07-25T20:27:38.787Z", "action": "Fase 8 Solution Architecture: draft en docs/ listo para aprobación (gate)", "details": "Documento 08-solution-architecture.md validado con gate 8 (0 errores). Pendiente de aprobación humana explícita (gate)." },
+    { "date": "2026-07-25T20:23:56.757Z", "action": "Fase 7 Backend Schema aprobada", "details": "Documento 07-backend-schema.md promovido a docs/. Avanzando a Fase 8 Solution Architecture (gate explícito)." },
+    { "date": "2026-07-25T20:22:40.171Z", "action": "Fase 7 Backend Schema: borrador listo", "details": "Borrador 07-backend-schema.md creado con entidades (BacklogDocument, BacklogItem, BacklogChange, ChangelogDocument), API contracts, data flow con transacción dual, storage strategy, sensitive data y volume estimates. Pendiente de aprobación." },
+    { "date": "2026-07-25T20:21:36.245Z", "action": "Fase 6 Functional Requirements aprobada", "details": "Documento 06-functional-requirements.md promovido a docs/ con 26 RFs y 21 RNs. Avanzando a Fase 7 Backend Schema." },
+    { "date": "2026-07-25T20:16:53.837Z", "action": "Fase 6 Functional Requirements: borrador listo", "details": "Borrador 06-functional-requirements.md creado con 16 requisitos funcionales mapeados a módulos y 15 reglas de negocio. Pendiente de aprobación." },
+    { "date": "2026-07-25T20:14:07.366Z", "action": "Fase 5 Module Catalog aprobada", "details": "Documento 05-module-catalog.md promovido a docs/. Avanzando a Fase 6 Functional Requirements." },
+    { "date": "2026-07-25T20:12:00.772Z", "action": "Fase 5 Module Catalog: borrador listo", "details": "Borrador 05-module-catalog.md creado con 9 módulos (CLI, Parser, Validator, Renderer, BacklogService, SelectionService, PromptBuilder, FileStorage, Domain). Pendiente de aprobación." },
+    { "date": "2026-07-25T20:10:41.745Z", "action": "Fase 4 UI/UX Brief aprobada", "details": "Documento 04-uiux-brief.md promovido a docs/. Avanzando a Fase 5 Module Catalog." },
+    { "date": "2026-07-25T20:09:43.366Z", "action": "Fase 4 UI/UX Brief: borrador listo", "details": "Borrador 04-uiux-brief.md creado con diseño de CLI, colores ANSI, salidas de comando y principios UX. Pendiente de aprobación." },
+    { "date": "2026-07-25T20:00:12.802Z", "action": "Fase 3 Application Flow aprobada", "details": "Documento 03-application-flow.md promovido a docs/. Avanzando a Fase 4 UI/UX Brief." },
+    { "date": "2026-07-25T19:59:13.819Z", "action": "Fase 3 Application Flow: borrador listo", "details": "Borrador 03-application-flow.md creado con 7 user journeys detallados paso a paso. Pendiente de aprobación." },
+    { "date": "2026-07-25T19:55:29.571Z", "action": "Fase 2 Product Requirements aprobada", "details": "Documento 02-product-requirements.md promovido a docs/. Avanzando a Fase 3 Application Flow." },
+    { "date": "2026-07-25T19:53:45.861Z", "action": "Fase 2 Product Requirements en progreso", "details": "Visión, propuesta de valor, objetivos, alcances y supuestos registrados." },
+    { "date": "2026-07-25T19:50:58.866Z", "action": "Fase 1 Discovery aprobada", "details": "Documento 01-discovery.md promovido a docs/. Avanzando a Fase 2 Product Requirements." },
+    { "date": "2026-07-25T19:48:57.411Z", "action": "Discovery completada", "details": "Información confirmada: problema, usuarios, buyer, restricciones, criterios de éxito, alcance y fuera de alcance registrados." },
+    { "date": "2026-07-25T19:43:56.149Z", "action": "Blueprint inicializado", "details": "Estructura inicial creada. Fase 1 de descubrimiento iniciada." }
+  ],
+  "deliveryRoadmap": { "phases": [] },
+  "privacy": { "dataClassification": "", "piiEntities": [], "retentionPolicy": "", "regulatoryCompliance": [] },
+  "backups": { "strategy": "", "frequency": "", "retention": "", "disasterRecovery": "" },
+  "maintainability": { "codingStandards": "", "documentationPolicy": "", "testingStrategy": "", "ciCd": "", "monitoring": "" },
+  "deploymentRequirements": { "infrastructure": "", "environments": [], "scalability": "", "availability": "", "securityRequirements": [] }
+}
