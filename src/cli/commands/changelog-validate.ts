@@ -8,7 +8,7 @@ export interface ChangelogValidateOptions {
 }
 
 function deriveBacklogPath(changelogPath: string): string {
-  return changelogPath.replace(/CHANGELOG\.md$/i, 'backlog.md');
+  return changelogPath.replace(/CHANGELOG\.md$/i, 'BACKLOG.md');
 }
 
 export async function validateChangelogCommand(path: string, options: ChangelogValidateOptions) {

@@ -1,5 +1,6 @@
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
 import { toString } from 'mdast-util-to-string';
 import type { Root, Heading, List, ListItem, Paragraph, Strong, Text, YAML } from 'mdast';
@@ -76,7 +77,7 @@ function parseMetadataListItem(text: string): { key: keyof BacklogItem; value: s
 }
 
 export function parse(markdown: string): BacklogDocument {
-  const tree = unified().use(remarkParse).use(remarkFrontmatter, ['yaml']).parse(markdown) as Root;
+  const tree = unified().use(remarkParse).use(remarkGfm).use(remarkFrontmatter, ['yaml']).parse(markdown) as Root;
 
   const doc: Partial<BacklogDocument> = {};
   const items: BacklogItem[] = [];
@@ -182,7 +183,11 @@ export function parse(markdown: string): BacklogDocument {
         }
 
         if (currentSection === 'acceptance criteria') {
-          currentItem.acceptanceCriteria = [...(currentItem.acceptanceCriteria ?? []), parseCheckboxItem(text)];
+          const parsed = parseCheckboxItem(text);
+          if (li.checked !== undefined && li.checked !== null) {
+            parsed.completed = li.checked;
+          }
+          currentItem.acceptanceCriteria = [...(currentItem.acceptanceCriteria ?? []), parsed];
         } else if (currentSection === 'evidence') {
           const { text: cleanText, completed } = parseCheckboxItem(text);
           if (!completed) {

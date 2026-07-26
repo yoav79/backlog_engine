@@ -1,5 +1,6 @@
 import { unified } from 'unified';
 import remarkStringify from 'remark-stringify';
+import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
 import type { Root, YAML, Heading, Paragraph, List, ListItem, Text } from 'mdast';
 import type { BacklogDocument, BacklogItem, AcceptanceCriterion } from '../domain/index.js';
@@ -31,7 +32,6 @@ function buildHeading(depth: 1 | 2 | 3, text: string): Heading {
 }
 
 function buildCheckboxItem(criterion: AcceptanceCriterion): ListItem {
-  const marker = criterion.completed ? '[x]' : '[ ]';
   return {
     type: 'listItem',
     spread: false,
@@ -39,7 +39,7 @@ function buildCheckboxItem(criterion: AcceptanceCriterion): ListItem {
     children: [
       {
         type: 'paragraph',
-        children: [buildText(`${marker} ${criterion.text}`)],
+        children: [buildText(criterion.text)],
       },
     ],
   };
@@ -58,8 +58,16 @@ function itemIdNumber(id: string): number {
   return match ? parseInt(match[1], 10) : 0;
 }
 
+function statusOrder(status: BacklogItem['status']): number {
+  return status === 'done' || status === 'cancelled' ? 1 : 0;
+}
+
 function sortItems(items: BacklogItem[]): BacklogItem[] {
-  return [...items].sort((a, b) => itemIdNumber(a.id) - itemIdNumber(b.id));
+  return [...items].sort((a, b) => {
+    const orderDiff = statusOrder(a.status) - statusOrder(b.status);
+    if (orderDiff !== 0) return orderDiff;
+    return itemIdNumber(a.id) - itemIdNumber(b.id);
+  });
 }
 
 function buildMetadataListItem(label: string, value: string): ListItem {
@@ -69,8 +77,7 @@ function buildMetadataListItem(label: string, value: string): ListItem {
     children: [{
       type: 'paragraph',
       children: [
-        { type: 'strong', children: [{ type: 'text', value: `${label}:` }] },
-        { type: 'text', value: ` ${value}` },
+        { type: 'text', value: `${label}: ${value}` },
       ],
     }],
   };
@@ -158,6 +165,7 @@ export function render(doc: BacklogDocument): string {
 
   const result = unified()
     .use(remarkFrontmatter, ['yaml'])
+    .use(remarkGfm)
     .use(remarkStringify, {
       bullet: '-',
       emphasis: '_',

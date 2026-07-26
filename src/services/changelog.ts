@@ -141,14 +141,14 @@ export function recordChange(changelog: string, request: RecordChangeRequest): C
       existingEntries = existingEntries.slice(headerMatch[0].length);
     }
 
-    const entryMd = `\n## ${changeId}\n\n- **Timestamp:** ${entry.timestamp}\n- **Actor:** ${entry.actor}\n- **Operation:** ${entry.operation}\n- **Items:** ${entry.itemIds.join(', ')}\n- **CommandId:** ${entry.commandId}\n${entry.reason ? `- **Reason:** ${entry.reason}\n` : ''}${fieldChanges.length > 0 ? `- **Changes:** ${fieldChanges.length} campo(s) modificado(s)\n` : ''}`;
+    const entryMd = `\n## ${changeId}\n\n- Timestamp: ${entry.timestamp}\n- Actor: ${entry.actor}\n- Operation: ${entry.operation}\n- Items: ${entry.itemIds.join(', ')}\n- CommandId: ${entry.commandId}\n${entry.reason ? `- Reason: ${entry.reason}\n` : ''}${fieldChanges.length > 0 ? `- Changes: ${fieldChanges.length} campo(s) modificado(s)\n` : ''}`;
 
     const newChangelog = `${updatedFrontmatter}\n# Changelog${entryMd}${existingEntries}`;
 
     return { entry, changelogMarkdown: newChangelog };
   }
 
-  const basicEntry = `\n## ${changeId}\n\n- **Timestamp:** ${entry.timestamp}\n- **Actor:** ${entry.actor}\n- **Operation:** ${entry.operation}\n- **Items:** ${entry.itemIds.join(', ')}\n- **CommandId:** ${entry.commandId}\n${entry.reason ? `- **Reason:** ${entry.reason}\n` : ''}`;
+  const basicEntry = `\n## ${changeId}\n\n- Timestamp: ${entry.timestamp}\n- Actor: ${entry.actor}\n- Operation: ${entry.operation}\n- Items: ${entry.itemIds.join(', ')}\n- CommandId: ${entry.commandId}\n${entry.reason ? `- Reason: ${entry.reason}\n` : ''}`;
 
   const newChangelog = `${frontmatter}${basicEntry}`;
 

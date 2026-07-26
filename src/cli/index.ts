@@ -184,7 +184,7 @@ program
       const { parse } = await import('../parser/index.js');
       const { BacklogService } = await import('../services/backlog.js');
       const content = await readFile(path, 'utf-8');
-      const changelogPath = path.replace(/backlog\.md$/, 'CHANGELOG.md');
+      const changelogPath = path.replace(/backlog\.md$/i, 'CHANGELOG.md');
       let changelogContent = '';
       try {
         changelogContent = await readFile(changelogPath, 'utf-8');
@@ -249,7 +249,7 @@ program
       const { parse } = await import('../parser/index.js');
       const { BacklogService } = await import('../services/backlog.js');
       const content = await readFile(path, 'utf-8');
-      const changelogPath = path.replace(/backlog\.md$/, 'CHANGELOG.md');
+      const changelogPath = path.replace(/backlog\.md$/i, 'CHANGELOG.md');
       let changelogContent = '';
       try {
         changelogContent = await readFile(changelogPath, 'utf-8');
@@ -306,7 +306,7 @@ program
       const { parse } = await import('../parser/index.js');
       const { BacklogService } = await import('../services/backlog.js');
       const content = await readFile(path, 'utf-8');
-      const changelogPath = path.replace(/backlog\.md$/, 'CHANGELOG.md');
+      const changelogPath = path.replace(/backlog\.md$/i, 'CHANGELOG.md');
       let changelogContent = '';
       try {
         changelogContent = await readFile(changelogPath, 'utf-8');

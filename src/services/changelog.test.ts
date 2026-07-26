@@ -13,11 +13,11 @@ updatedAt: 2026-07-25T12:00:00.000Z
 
 ## CHG-000001
 
-- **Timestamp:** 2026-07-25T12:00:00.000Z
-- **Actor:** agent:build
-- **Operation:** create
-- **Items:** BLG-001
-- **CommandId:** cmd-001
+- Timestamp: 2026-07-25T12:00:00.000Z
+- Actor: agent:build
+- Operation: create
+- Items: BLG-001
+- CommandId: cmd-001
 `;
 
 function makeDoc(): BacklogDocument {
@@ -132,7 +132,7 @@ describe('ChangelogService', () => {
       expect(result.changelogMarkdown).toContain('schemaVersion:');
       expect(result.changelogMarkdown).toContain('# Changelog');
       expect(result.changelogMarkdown).toContain('CHG-000002');
-      expect(result.changelogMarkdown).toContain('**Timestamp:**');
+      expect(result.changelogMarkdown).toContain('Timestamp:');
     });
   });
 
@@ -148,11 +148,11 @@ updatedAt: 2026-07-25T12:00:00.000Z
 
 ## CHG-000001
 
-- **Timestamp:** 2026-07-25T12:00:00.000Z
-- **Actor:** agent:build
-- **Operation:** create
-- **Items:** BLG-001
-- **CommandId:** cmd-001
+- Timestamp: 2026-07-25T12:00:00.000Z
+- Actor: agent:build
+- Operation: create
+- Items: BLG-001
+- CommandId: cmd-001
 
 ## CHG-000002
 
